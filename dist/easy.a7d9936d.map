@@ -1,0 +1,1 @@
+{"version":3,"sources":["easy.js"],"names":["timeFormat"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAGA,SAASA,UAAT,GAAqB,CAEpB;;QAGGA,aAAAA","file":"easy.a7d9936d.map","sourceRoot":"..","sourcesContent":["/** \n * 时间格式化\n */\nfunction timeFormat(){\n    \n}\n\nexport {\n    timeFormat\n}"]}
