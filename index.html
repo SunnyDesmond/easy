@@ -1,15 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>easyJs demo</title>
+    <style>
+        .title {
+            color: #927ddc;
+        }
+
+        .result {
+            display: block;
+            color: brown;
+        }
+
+        code {
+            background-color: #fdebe7;
+        }
+
+        .cell {
+            background-color: #efefef;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
+
 <body>
-    <div>
-        <h1>hello easyJs</h1>
+    <!-- 时间格式化 -->
+    <div class="box">
+        <h3 class="title">时间格式化</h3>
+        <div class="con">
+            <div class="cell">
+                <b>年月日</b>
+                <p>
+                    <span class="result" id="yymmdd1"></span>
+                    <code>
+                        formatDate(new Date().getTime(),'YY年MM月DD日');
+                    </code>
+                </p>
+                <p>
+                    <span class="result" id="yymmdd2"></span>
+                    <code>
+                        formatDate(new Date().getTime(),'YY-MM-DD');
+                    </code>
+                </p>
+                <p>
+                    <span class="result" id="yymmdd3"></span>
+                    <code>
+                        formatDate(new Date().getTime(),'YY/MM/DD');
+                    </code>
+                </p>
+                <p>
+                    <span class="result" id="yymmdd4"></span>
+                    <code>
+                        formatDate(new Date().getTime(),'今天是YY年MM月DD号')
+                    </code>
+                </p>
+            </div>
+            <div class="cell">
+                <b>年月日 时分</b>
+                <p>
+                    <span class="result" id="yymmddhhmm"></span>
+                    <code>
+                        formatDate(new Date().getTime(),"YY-MM-DD hh:mm")
+                    </code>
+                </p>
+
+            </div>
+            <div class="cell">
+                <b>年月日 时分秒</b>
+                <p>
+                    <span class="result" id="yymmddhhmmss"></span>
+                    <code>
+                        formatDate(new Date().getTime(),"YY-MM-DD hh:mm:ss")
+                    </code>
+                </p>
+
+            </div>
+        </div>
     </div>
-    <script src="easy.js"></script>
+    <!-- 金额千分化 -->
+    <div class="box">
+        <h3 class="title">金额千分化</h3>
+        <div class="con">
+            <div class="cell">
+                <p>
+                    <span class="result" id="money"></span>
+                    <code>
+                        money(123456789.23979213) 或者 money(123456789.23979213)
+                    </code>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 获取url参数 -->
+    <div class="box">
+        <h3 class="title">获取url参数</h3>
+        <div class="con">
+            <div class="cell">
+                <p>
+                    <span class="result" id="urlParam"></span>
+                    <code>
+                        直接跟上url上的参数名即可 http://localhost:1234/?id=1 则 urlParam().id
+                    </code>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+
 </body>
+
 </html>

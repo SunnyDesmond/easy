@@ -104,7 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"easy.js":[function(require,module,exports) {
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -112,10 +112,83 @@ Object.defineProperty(exports, "__esModule", {
 /** 
  * 时间格式化
  */
-function timeFormat() {}
+function formatDate(time) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'YY-MM-DD';
 
-exports.timeFormat = timeFormat;
-},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+    var date = new Date(time);
+
+    var year = date.getFullYear(),
+        month = date.getMonth() + 1,
+        //月份是从0开始的
+    day = date.getDate(),
+        hour = date.getHours(),
+        min = date.getMinutes(),
+        sec = date.getSeconds();
+    ////开个长度为10的数组 格式为 00 01 02 03
+    var preArr = Array.apply(null, Array(10)).map(function (elem, index) {
+        return '0' + index;
+    });
+    var newTime = format.replace(/YY/g, year).replace(/MM/g, preArr[month] || month).replace(/DD/g, preArr[day] || day).replace(/hh/g, preArr[hour] || hour).replace(/mm/g, preArr[min] || min).replace(/ss/g, preArr[sec] || sec);
+
+    return newTime;
+}
+/**
+ * 金额千分化
+ */
+function money(v) {
+    return Number(v).toLocaleString();
+}
+
+function urlParam() {
+    var href = window.document.location.href;
+    if (href.indexOf("?") > -1) {
+        var params = href.split("?")[1];
+        var paramArr = params.split('&');
+        var res = {};
+        for (var i = 0; i < paramArr.length; i++) {
+            var str = paramArr[i].split('=');
+            res[str[0]] = str[1];
+        }
+        return res;
+    } else {
+        return false;
+    }
+}
+exports.formatDate = formatDate;
+exports.money = money;
+exports.urlParam = urlParam;
+},{}],"index.js":[function(require,module,exports) {
+'use strict';
+
+var _easy = require('./easy');
+
+// 年月日
+var yymmdd1 = (0, _easy.formatDate)(new Date().getTime(), 'YY年MM月DD日');
+document.querySelector("#yymmdd1").innerHTML = yymmdd1;
+
+var yymmdd2 = (0, _easy.formatDate)(new Date().getTime(), 'YY-MM-DD');
+document.querySelector("#yymmdd2").innerHTML = yymmdd2;
+
+var yymmdd3 = (0, _easy.formatDate)(new Date().getTime(), 'YY/MM/DD');
+document.querySelector("#yymmdd3").innerHTML = yymmdd3;
+
+var yymmdd4 = (0, _easy.formatDate)(new Date().getTime(), '今天是YY年MM月DD号');
+document.querySelector("#yymmdd4").innerHTML = yymmdd4;
+// 年月日 时分
+var yymmddhhmm = (0, _easy.formatDate)(new Date().getTime(), "YY-MM-DD hh:mm");
+document.querySelector("#yymmddhhmm").innerHTML = yymmddhhmm;
+// 年月日 时分秒
+var yymmddhhmmss = (0, _easy.formatDate)(new Date().getTime(), "YY-MM-DD hh:mm:ss");
+document.querySelector("#yymmddhhmmss").innerHTML = yymmddhhmmss;
+
+// 金额千分化
+var money1 = (0, _easy.money)(123456789.23979213);
+document.querySelector("#money").innerHTML = money1;
+
+// 解析url参数
+var urlParam1 = (0, _easy.urlParam)().id;
+document.querySelector("#urlParam").innerHTML = urlParam1;
+},{"./easy":"easy.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -144,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58173' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60029' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -285,5 +358,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","easy.js"], null)
-//# sourceMappingURL=/easy.a7d9936d.map
+},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/easy.2a953322.map
