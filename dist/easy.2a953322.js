@@ -138,7 +138,9 @@ function formatDate(time) {
 function money(v) {
     return Number(v).toLocaleString();
 }
-
+/**
+ * 解析url参数
+ */
 function urlParam() {
     var href = window.document.location.href;
     if (href.indexOf("?") > -1) {
@@ -154,9 +156,55 @@ function urlParam() {
         return false;
     }
 }
+
+/**
+ * 数组去重
+ */
+function arrUnique(arr) {
+    var result = [],
+        json = {};
+    for (var i = 0, len = arr.length; i < len; i++) {
+        if (!json[arr[i]]) {
+            json[arr[i]] = 1;
+            result.push(arr[i]); //返回没被删除的元素
+        }
+    }
+    return result;
+}
+/**
+ *  android & ios 交互
+ * fnName: 交互方法名
+ * fnParam：需要传递的参数
+ * 
+ */
+function callNative(fnName) {
+    var fnParam = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+    var browser = {
+        versions: function () {
+            var u = navigator.userAgent,
+                app = navigator.appVersion;
+            return { //移动终端浏览器版本信息 
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端 
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器 
+                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器 
+                iPad: u.indexOf('iPad') > -1 //是否iPad 
+            };
+        }()
+        // 如果不行的话 尝试   window.webkit.messageHandlers.eval(fnName)(fnParam)
+    };if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+        window.webkit.messageHandlers.fnName(fnParam);
+    }
+    if (browser.versions.android) {
+        window.AndroidWebView.fnName(fnParam);
+    }
+}
+
 exports.formatDate = formatDate;
 exports.money = money;
 exports.urlParam = urlParam;
+exports.arrUnique = arrUnique;
+exports.callNative = callNative;
 },{}],"index.js":[function(require,module,exports) {
 'use strict';
 
@@ -188,6 +236,19 @@ document.querySelector("#money").innerHTML = money1;
 // 解析url参数
 var urlParam1 = (0, _easy.urlParam)().id;
 document.querySelector("#urlParam").innerHTML = urlParam1;
+
+// 数组去重
+var arrUnique1 = ["31", 31, "a", "a", 23, 1, 3, 4, 5, 52, 23, 4, 2];
+document.querySelector("#arrUnique").innerHTML = (0, _easy.arrUnique)(arrUnique1);
+
+// android & ios 交互 callNative("nativeCallback",'nativeCallbackParam')
+document.querySelector("#callNative").addEventListener("click", function () {
+    try {
+        (0, _easy.callNative)("nativeCallback", 'nativeCallbackParam');
+    } catch (err) {
+        document.querySelector("#callNativeResult").innerHTML = err;
+    }
+});
 },{"./easy":"easy.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -217,7 +278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60029' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50516' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
