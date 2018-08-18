@@ -1,3 +1,11 @@
+//==============================================================
+//  作者：jed shi 
+//  时间：2018年08月10日
+//  文件名：foolJs
+//  版本：V1.0.1  
+//  说明： 开箱即用js 工具合集
+//==============================================================
+
 /** 
  * 时间格式化
  */
@@ -32,7 +40,7 @@ function money(v) {
 /**
  * 解析url参数
  */
-function urlParam(){
+function urlParam() {
     const href = window.document.location.href;
     if (href.indexOf("?") > -1) {
         var params = href.split("?")[1];
@@ -51,12 +59,13 @@ function urlParam(){
 /**
  * 数组去重
  */
-function arrUnique(arr){
-    let result = [], json = {};
-    for (var i = 0, len = arr.length; i < len; i++){
+function arrUnique(arr) {
+    let result = [],
+        json = {};
+    for (var i = 0, len = arr.length; i < len; i++) {
         if (!json[arr[i]]) {
             json[arr[i]] = 1;
-            result.push(arr[i]);  //返回没被删除的元素
+            result.push(arr[i]); //返回没被删除的元素
         }
     }
     return result;
@@ -67,9 +76,9 @@ function arrUnique(arr){
  * fnParam：需要传递的参数
  * 
  */
-function callNative(fnName,fnParam=""){
-    let browser={
-        versions: function() {
+function callNative(fnName, fnParam = "") {
+    let browser = {
+        versions: function () {
             var u = navigator.userAgent,
                 app = navigator.appVersion;
             return { //移动终端浏览器版本信息 

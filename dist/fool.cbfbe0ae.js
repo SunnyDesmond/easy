@@ -103,7 +103,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"easy.js":[function(require,module,exports) {
+})({"fool.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -216,48 +216,48 @@ exports.callNative = callNative;
 },{}],"index.js":[function(require,module,exports) {
 'use strict';
 
-var _easy = require('./easy');
+var _fool = require('./fool');
 
 // 年月日
-var yymmdd1 = (0, _easy.formatDate)(new Date().getTime(), 'YY年MM月DD日');
+var yymmdd1 = (0, _fool.formatDate)(new Date().getTime(), 'YY年MM月DD日');
 document.querySelector("#yymmdd1").innerHTML = yymmdd1;
 
-var yymmdd2 = (0, _easy.formatDate)(new Date().getTime(), 'YY-MM-DD');
+var yymmdd2 = (0, _fool.formatDate)(new Date().getTime(), 'YY-MM-DD');
 document.querySelector("#yymmdd2").innerHTML = yymmdd2;
 
-var yymmdd3 = (0, _easy.formatDate)(new Date().getTime(), 'YY/MM/DD');
+var yymmdd3 = (0, _fool.formatDate)(new Date().getTime(), 'YY/MM/DD');
 document.querySelector("#yymmdd3").innerHTML = yymmdd3;
 
-var yymmdd4 = (0, _easy.formatDate)(new Date().getTime(), '今天是YY年MM月DD号');
+var yymmdd4 = (0, _fool.formatDate)(new Date().getTime(), '今天是YY年MM月DD号');
 document.querySelector("#yymmdd4").innerHTML = yymmdd4;
 // 年月日 时分
-var yymmddhhmm = (0, _easy.formatDate)(new Date().getTime(), "YY-MM-DD hh:mm");
+var yymmddhhmm = (0, _fool.formatDate)(new Date().getTime(), "YY-MM-DD hh:mm");
 document.querySelector("#yymmddhhmm").innerHTML = yymmddhhmm;
 // 年月日 时分秒
-var yymmddhhmmss = (0, _easy.formatDate)(new Date().getTime(), "YY-MM-DD hh:mm:ss");
+var yymmddhhmmss = (0, _fool.formatDate)(new Date().getTime(), "YY-MM-DD hh:mm:ss");
 document.querySelector("#yymmddhhmmss").innerHTML = yymmddhhmmss;
 
 // 金额千分化
-var money1 = (0, _easy.money)(123456789.23979213);
+var money1 = (0, _fool.money)(123456789.23979213);
 document.querySelector("#money").innerHTML = money1;
 
 // 解析url参数
-var urlParam1 = (0, _easy.urlParam)().id;
+var urlParam1 = (0, _fool.urlParam)().id;
 document.querySelector("#urlParam").innerHTML = urlParam1;
 
 // 数组去重
 var arrUnique1 = ["31", 31, "a", "a", 23, 1, 3, 4, 5, 52, 23, 4, 2];
-document.querySelector("#arrUnique").innerHTML = (0, _easy.arrUnique)(arrUnique1);
+document.querySelector("#arrUnique").innerHTML = (0, _fool.arrUnique)(arrUnique1);
 
 // android & ios 交互 callNative("nativeCallback",'nativeCallbackParam')
 document.querySelector("#callNative").addEventListener("click", function () {
     try {
-        (0, _easy.callNative)("nativeCallback", 'nativeCallbackParam');
+        (0, _fool.callNative)("nativeCallback", 'nativeCallbackParam');
     } catch (err) {
         document.querySelector("#callNativeResult").innerHTML = err;
     }
 });
-},{"./easy":"easy.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./fool":"fool.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -286,7 +286,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53386' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64173' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -428,4 +428,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/easy.2a953322.map
+//# sourceMappingURL=/fool.cbfbe0ae.map

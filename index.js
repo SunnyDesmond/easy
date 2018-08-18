@@ -1,4 +1,4 @@
-import {formatDate,money,urlParam,arrUnique,callNative} from './easy';
+import {formatDate,money,urlParam,arrUnique,callNative} from './fool';
 // 年月日
 const yymmdd1 = formatDate(new Date().getTime(),'YY年MM月DD日');
 document.querySelector("#yymmdd1").innerHTML = yymmdd1;
